@@ -2,7 +2,7 @@
   "name": "timmybot",
   "version": "1.0.0",
   "description": "Timmy is a wonderful open-source shiba created using community suggestions.",
-  "main": "index.js",
+  "main": "./index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,14 +23,17 @@
   "homepage": "https://github.com/c0reme/timmybot#readme",
   "dependencies": {
     "@joshdb/core": "^1.2.4",
+    "@joshdb/json": "^1.0.3",
     "@joshdb/mongo": "^1.1.4",
     "@joshdb/sqlite": "^1.1.8",
     "bootstrap": "^5.0.0",
+    "chalk": "^4.1.1",
     "discord.js": "^12.5.3",
     "enmap": "^5.8.5",
     "giphy-api": "^2.0.1",
     "humanize-duration": "^3.27.0",
     "lodash": "^4.17.21",
+    "moment": "^2.29.1",
     "ms": "^2.1.3"
   }
 }
