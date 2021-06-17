@@ -27,7 +27,13 @@ const client = new Client();
 
 // Sends a message to the console when the bot is ready.
 client.on('ready', async () => {
-    await client.user.setActivity({ name: 'myself', type: 'WATCHING' });
+    const servers = client.guilds.cache.size;
+    await client.user.setActivity(
+        {
+            name: `in ${config.commaify(servers)} ${config.plural('server', servers)}`,
+            type: 'WATCHING'
+        }
+    )
     client.logger.info(`${client.user.username} is ready and waiting.`);
 })
 
@@ -49,7 +55,7 @@ client.on('message', async message => {
     await config.db.guild.get(key);
 
     // Gets the guild's prefix and returns if it doesn't begin with it.
-    const prefix = await config.db.guild.get(`${ key }.prefix`);
+    const prefix = await config.db.guild.get(`${key}.prefix`);
     if (!message.content.startsWith(prefix)) return;
     client.prefix = prefix;
 
