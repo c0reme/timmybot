@@ -11,11 +11,14 @@
     <a href="https://discord.gg/5QWKTsy">
         <img src="https://discordapp.com/api/guilds/714149680610803813/widget.png?style=shield" alt="Discord Server">
     </a>
-    <a href="https://nodejs.org/en/">
-        <img src="https://img.shields.io/badge/npm-v6.14.13-blue?logo=npm" alt="npm version">
-    </a>
     <a href="https://github.com/discordjs">
         <img src="https://img.shields.io/badge/discord.js-v12.0.0--dev-blue.svg?logo=npm" alt="discord.js npm package">
+    </a>
+    <a href="https://nodejs.org/en/">
+        <img src="https://img.shields.io/badge/node.js-v14.17.0-blue?logo=node.js" alt="npm version">
+    </a>
+    <a href="https://github.com/c0reme/timmybot/actions/workflows/node.js.yml">
+        <img src="https://github.com/c0reme/timmybot/actions/workflows/node.js.yml/badge.svg" alt="node.js ci">
     </a>
 </p>
 
