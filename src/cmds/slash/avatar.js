@@ -24,16 +24,11 @@ module.exports = {
      * @param {Discord.Client} client 
      */
     run: async (interaction, client) => {
-        const data = interaction.data;
+        let data = interaction.data;
         let user = client.users.cache.get(interaction.member.user.id);
         if (!isNil(data.options)) user = client.users.cache.get(data.options[0].value);
         return {
-            embeds: [
-                new Discord.MessageEmbed()
-                    .setAuthor(user.username, user.avatarURL())
-                    .setDescription(`**[Download avatar](${user.avatarURL({ size: 1024, dynamic: true })})**`)
-                    .setImage(user.avatarURL({ size: 1024, dynamic: true }))
-            ]
+            content: user.avatarURL({ size: 1024, dynamic: true })
         }
     }
 }
