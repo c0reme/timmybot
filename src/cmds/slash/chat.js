@@ -30,8 +30,8 @@ class Webhooks {
      * @returns {String}
      */
     get value() {
-        if (isNil(this.data.options.find(opt => opt.name === 'value')?.value.toLowerCase())) return null;
-        return this.data.options.find(opt => opt.name === 'value').value.toLowerCase();
+        if (isNil(this.data.options.find(opt => opt.name === 'value')?.value)) return null;
+        return this.data.options.find(opt => opt.name === 'value').value;
     }
     get type() {
         return this.data.options[0].value;
@@ -74,7 +74,7 @@ class Webhooks {
         else if (type === 'add') {
             if (!(/https?:\/\/(www\.)?discord.com\/api\/webhooks\//gm.test(this.value))) return;
             let webhooks = await this.webhooks;
-            webhook = webhooks.get(value.replace(/https?:\/\/(www\.)?discord.com\/api\/webhooks\//gm, '').split('/')[0]);
+            webhook = webhooks.get(this.value.replace(/https?:\/\/(www\.)?discord.com\/api\/webhooks\//gm, '').split('/')[0]);
         } else return;
         if (!webhook) return;
         await this.db.push(this.key, {
@@ -186,10 +186,16 @@ module.exports = {
      */
     run: async (interaction, client) => {
         const wb = new Webhooks(interaction, client);
+        wb.db.set(interaction.member.user.id)
         let slots = 1;
         for (let id of ['714149680610803813', '716712328477016175']) {
             if (!client.guilds.cache.get(id)) continue;
             //if (client.guilds.cache.get(id).members.cache.get(user.id)) slots = 5;
+        }
+        if (interaction.member.user.id !== '373799100153593857') {
+            return {
+                content: 'Sorry, you cannot use atm.'
+            }
         }
         // Creates a new webhook.
         if (['new'].includes(wb.type)) return await wb.add('new');
