@@ -38,7 +38,7 @@ module.exports = {
             }
             return message.reply(`\`\`\`js\n${evaled}\`\`\``);
         } catch (error) {
-            return message.reply(`\`\`\`js\n${error}\`\`\``)
+            return message.reply(`\`\`\`js\n${error}\`\`\``) && client.logger.error(error);
         }
     }
 }
