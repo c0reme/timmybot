@@ -1,65 +1,30 @@
-const Josh = require("@joshdb/core");
-const mongo = require('@joshdb/mongo');
-const sqlite = require('@joshdb/sqlite');
-
-const db = {
-    guild: new Josh({
-        name: 'guild',
-        provider: sqlite,
-        autoEnsure: {
-            prefix: '-'
-        }
-    }),
-    pet: new Josh({
-        name: 'pet',
-        provider: sqlite,
-        autoEnsure: {
-            name: '',
-            stats: {
-                level: 1,
-                xp: 0
-            },
-            upgrades: []
-        }
-    }),
-    dev: new Josh({
-        name: 'dev',
-        provider: sqlite,
-        autoEnsure: {
-            copy: {
-                state: false,
-                channel: null
-            },
-            wb: []
-        }
-    }),
-    wb: new Josh({
-        name: 'webhooks',
-        provider: sqlite,
-        autoEnsure: []
-    })
-}
+const Josh = require('@joshdb/core');
 
 module.exports = {
-    db,
-    /**
-     * Converts the provided number into a comma-fied string or a shorten string.
-     * @param {Number} number
-     */
-    commaify: (number) => {
-        let i = number.toString();
-        const index = /(-?\d+)(\d{3})/;
-        while (index.test(i)) {
-            i = i.replace(index, '$1,$2');
-        };
-        return i;
+    // Databases used by the Discord bot.
+    db: {
+        guild: new Josh({
+            name: 'guild',
+            provider: require('@joshdb/sqlite'),
+            autoEnsure: {
+                prefix: '-',
+                webhooks: false
+            }
+        }),
+        wb: new Josh({
+            name: 'webhooks',
+            provider: require('@joshdb/sqlite'),
+            autoEnsure: []
+        }),
+        cfg: new Josh({
+            name: 'config',
+            provider: require('@joshdb/json'),
+            providerOptions: {
+                indexAll: true,
+                cleanupEmpty: true
+            }
+        })
     },
-    dateEN: require('humanize-duration').humanizer({
-        largest: 2,
-        round: true,
-        spacer: ' ',
-        conjunction: ' ',
-        serialComma: false,
-    }),
-    token: 'BOT_TOKEN_GOES_HERE'
+    // Gets the json config.
+    json: require('../data/config.json')
 }
