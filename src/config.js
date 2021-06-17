@@ -26,5 +26,27 @@ module.exports = {
         })
     },
     // Gets the json config.
-    json: require('../data/config.json')
+    json: require('../data/config.json'),
+    /**
+     * Converts the provided number into a comma-fied string or a shorten string.
+     * @param {Number} number
+     */
+    commaify: (number) => {
+        let i = number.toString();
+        const index = /(-?\d+)(\d{3})/;
+        while (index.test(i)) {
+            i = i.replace(index, '$1,$2');
+        };
+        return i;
+    },
+    /**
+     * 
+     * @param {String} string 
+     * @param {Number} number 
+     * @returns 
+     */
+    plural: (string, number) => {
+        if (number !== 1) return `${string}s`;
+        return string;
+    }
 }
