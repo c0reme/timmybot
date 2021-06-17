@@ -1,5 +1,4 @@
-# Ignores the "node_modules" and "data" folder.
 data/
 node_modules/
-# Ignores futher "token.js" changes.
+package-lock.json
 src/token.js
